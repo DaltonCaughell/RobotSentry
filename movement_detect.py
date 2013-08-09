@@ -1,0 +1,30 @@
+from SimpleCV import Image, Camera, Display
+import time
+
+disp = Display()
+cam = Camera()
+while(disp.isNotDone()):
+    print("standby for Image A...")
+    print("3")
+    time.sleep(1)
+    print("2")
+    time.sleep(1)
+    print("1")
+    time.sleep(1)
+    imgA = cam.getImage()
+    print("took Image A")
+    print("standby for Image B...")
+    print("3")
+    imgA.save(disp)
+    time.sleep(1)
+    print("2")
+    time.sleep(1)
+    print("1")
+    time.sleep(1)
+    imgB = cam.getImage()
+    print("took Image B")
+    imgC = imgA - imgB
+    print("checked for movement")
+    print("showing")
+    imgC.save(disp)
+    time.sleep(5)
