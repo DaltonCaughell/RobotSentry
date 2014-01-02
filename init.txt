@@ -1,0 +1,4 @@
+Hello,
+
+RobotSentry is initialized. I will alert you of any intruders.
+

@@ -12,16 +12,38 @@ SYSTEM_EMAIL = 'robotsentry@gmail.com'
 SYSTEM_PASSWORD = 'youshallnotpass!'
 SYSTEM_HOSTNAME = 'smtp.gmail.com'
 
+#open SMTP connection
+s = smtplib.SMTP_SSL(SYSTEM_HOSTNAME)
+s.login(SYSTEM_EMAIL, SYSTEM_PASSWORD)
+
+#reset connection
+def resetEmail():
+    s = smtplib.SMTP_SSL(SYSTEM_HOSTNAME)
+    s.login(SYSTEM_EMAIL, SYSTEM_PASSWORD)
+
+#print all setup info
+def printEmailSetup():
+    print '\nEmail setup:'
+    print "User Email: ", USER_EMAIL
+    print "System Email: ", SYSTEM_EMAIL
+    print "System Hostname: ", SYSTEM_HOSTNAME
+    print "System Password: ", SYSTEM_PASSWORD
+
 #changes setup info
 def init(email, host = SYSTEM_HOSTNAME, username = SYSTEM_EMAIL, password = SYSTEM_PASSWORD):
+    
+    global USER_EMAIL
     USER_EMAIL = email
+    global SYSTEM_EMAIL
     SYSTEM_EMAIL = username
+    global SYSTEM_PASSWORD
     SYSTEM_PASSWORD = password
+    global SYSTEM_HOSTNAME
     SYSTEM_HOSTNAME = host
 
 # Sends an email alert to the user.
 # Params: img:(Image) text:(Text)
-def sendAlert(msgtext, msgimg):
+def sendAlert(msgtext, msgsubject):
 
     #make an email msg from the file
     msg = MIMEMultipart()
@@ -29,27 +51,17 @@ def sendAlert(msgtext, msgimg):
     #make text component
     txt = MIMEText(msgtext)
 
-    #make image component (not working yet!)
-    #img = MIMEImage(str(msgimg.read()))
-    msgimg.close()
-
     #build message
     msg.attach(txt)
-    #msg.attach(img)
 
     #create message header
-    msg['Subject'] = 'Intruder Alert!'
+    msg['Subject'] = msgsubject
     msg['From'] = 'robotsentry@gmail.com'
     msg['To'] = USER_EMAIL
 
-    #open SMTP connection
-    s = smtplib.SMTP_SSL(SYSTEM_HOSTNAME)
-    s.login(SYSTEM_EMAIL, SYSTEM_PASSWORD)
-
     #send alert
-    print('Sending Alert to: {}: \nAlert: \n{}'.format(USER_EMAIL, msgtext))
+    print('Sending Alert to: {}:\n{}'.format(USER_EMAIL, msgtext))
     s.sendmail(SYSTEM_EMAIL, [USER_EMAIL], msg.as_string())
-    s.quit()
 
 
 

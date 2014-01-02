@@ -1,3 +1,0 @@
-This is a test email.
-
-Normally this text would explain the time of the alert, and other stuff.
