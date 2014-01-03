@@ -36,9 +36,16 @@ while(user_input == 'n'):
         text.close()
 
 
+print "\n tracker running..."
+
+sendAlert("blah","blah", "trollface.jpg")
+
+tickcount = 0
+
 while tracker.running():
     #Robot Sentry Main Loop
-
+    print 'tick#', tickcount
+    tickcount += 1    
     tracker.tick()
 
     if tracker.movement():

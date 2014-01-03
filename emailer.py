@@ -2,6 +2,7 @@
 import smtplib
 
 # Import email module
+import os
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
@@ -43,17 +44,23 @@ def init(email, host = SYSTEM_HOSTNAME, username = SYSTEM_EMAIL, password = SYST
 
 # Sends an email alert to the user.
 # Params: img:(Image) text:(Text)
-def sendAlert(msgtext, msgsubject):
+def sendAlert(msgtext, msgsubject, msgattch = 0):
+
 
     #make an email msg from the file
     msg = MIMEMultipart()
     
     #make text component
     txt = MIMEText(msgtext)
-
-    #build message
     msg.attach(txt)
+    
 
+    #make image component
+    if not (msgattch == 0):
+        img_data = open(msgattch, 'rb').read()
+        img = MIMEImage(img_data, name=os.path.basename(msgattch))
+        msg.attach(img)
+    
     #create message header
     msg['Subject'] = msgsubject
     msg['From'] = 'robotsentry@gmail.com'

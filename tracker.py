@@ -9,8 +9,8 @@ cap = cv2.VideoCapture(0)
 cap.set(3,1280)
 cap.set(4,1024)
 
-lastimg = cap.read()
-img = cap.read()
+lastret, lastimg = cap.read()
+ret, img = cap.read()
 
 print "Tracker initialized correctly using OpenCV version ", cv2.__version__
 
