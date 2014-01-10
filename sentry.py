@@ -2,7 +2,11 @@
 from emailer import sendAlert, init, printEmailSetup, resetEmail
 
 #import code to say things
-from speaker import say
+try:
+    from speaker import say
+except:
+    print("No speech module loaded")
+    from notspeaker import say
 
 #import code to detect motion
 import tracker

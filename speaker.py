@@ -1,8 +1,8 @@
-import pyttsx
+#import pyttsx
 
-speaker = pyttsx.init()
+#speaker = pyttsx.init()
 
 def say(text):
-    speaker.say(text)
-    speaker.runAndWait()
+ #   speaker.say(text)
+  #  speaker.runAndWait()
 
