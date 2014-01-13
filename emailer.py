@@ -12,14 +12,15 @@ USER_EMAIL = 'decamun@gmail.com'
 SYSTEM_EMAIL = 'robotsentry@gmail.com'
 SYSTEM_PASSWORD = 'youshallnotpass!'
 SYSTEM_HOSTNAME = 'smtp.gmail.com'
+SYSTEM_PORT = 465
 
 #open SMTP connection
-s = smtplib.SMTP_SSL(SYSTEM_HOSTNAME)
+s = smtplib.SMTP_SSL(SYSTEM_HOSTNAME, SYSTEM_PORT)
 s.login(SYSTEM_EMAIL, SYSTEM_PASSWORD)
 
 #reset connection
 def resetEmail():
-    s = smtplib.SMTP_SSL(SYSTEM_HOSTNAME)
+    s = smtplib.SMTP_SSL(SYSTEM_HOSTNAME, SYSTEM_PORT)
     s.login(SYSTEM_EMAIL, SYSTEM_PASSWORD)
 
 #print all setup info
