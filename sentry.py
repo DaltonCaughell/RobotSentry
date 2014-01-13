@@ -1,5 +1,5 @@
 #import code to send email alerts
-from emailer import sendAlert, init, printEmailSetup, resetEmail
+from emailer import *
 
 #import code to say things
 try:
